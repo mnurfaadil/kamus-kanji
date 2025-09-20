@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"build:index": "tsx scripts/build-index.ts",
+		"build:index": "pnpm dlx tsx scripts/build-index.ts",
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
@@ -39,6 +39,7 @@
 		"typescript-eslint": "^8.20.0",
 		"vite": "^7.0.4"
 	},
+  	"packageManager": "pnpm@10.17.0",
 	"pnpm": {
 		"onlyBuiltDependencies": [
 			"esbuild"
