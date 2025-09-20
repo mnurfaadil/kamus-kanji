@@ -19,7 +19,7 @@ jobs:
           node-version: '22'
           cache: 'pnpm'
 
-      - name: Enable corepack (reads packageManager: pnpm@10.17.0)
+      - name: Enable corepack (reads packageManager pnpm@10.17.0)
         run: corepack enable
 
       - name: Install deps
