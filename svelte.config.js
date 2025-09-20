@@ -12,7 +12,15 @@ const config = {
     paths: {
       base: dev ? '' : `/${repo}`
     },
-	kit: { adapter: adapter() }
+	kit: {
+		adapter: adapter({
+			fallback: 'index.html',
+		}),
+		prerender: {
+			entries: ['/'],
+      		handleUnseenRoutes: 'warn'
+		}
+	}
 };
 
 export default config;
