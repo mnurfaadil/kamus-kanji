@@ -1,8 +1,8 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-const dev = process.argv.includes('dev');
-const repo = 'kamus-kanji'; // ganti
+const isProd = process.env.NODE_ENV === 'production';
+const repoName = 'kamus-kanji';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,7 +10,7 @@ const config = {
 	// for more information about preprocessors
 	preprocess: vitePreprocess(),
     paths: {
-      base: dev ? '' : `/${repo}`
+    	base: isProd ? `/${repoName}` : ''
     },
 	kit: {
 		adapter: adapter({
