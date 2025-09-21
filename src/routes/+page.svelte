@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { resolve } from '$app/paths';
-  import { searchByReading, searchByMeaningID } from '$lib/search';
-  let q = 'laut', mode: 'reading' | 'meaning' = 'meaning';
+  import { searchByKeyword } from '$lib/search';
+  let q = '';
   let results: number[] = [];
   async function go() {
-    results = mode === 'reading' ? await searchByReading(q) : await searchByMeaningID(q);
+    results = await searchByKeyword(q);
   }
   onMount(async () => {
     go()
@@ -18,10 +18,6 @@
     <input class="input input-bordered flex-1 border rounded px-3 py-2"
            placeholder="ketik yomi (かな/カナ/romaji) atau arti (ID)"
            bind:value={q} on:keydown={(e)=>e.key==='Enter'&&go()} />
-    <select class="border rounded px-2 min-w-[120px]" bind:value={mode}>
-      <option value="reading">Reading</option>
-      <option value="meaning">Arti (ID)</option>
-    </select>
     <button class="bg-black text-white rounded px-4" on:click={go}>Cari</button>
   </div>
 
