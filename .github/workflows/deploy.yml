@@ -23,10 +23,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+          cache: pnpm
+
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
 
       - name: Install deps
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         env:
@@ -34,10 +38,10 @@ jobs:
           GITHUB_ACTIONS: 'true'
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
-        run: npm run build
+        run: pnpm run build
 
-      # opsional untuk SPA/fallback
-      - name: Create 404.html (SPA)
+      # SPA fallback: copy index.html -> 404.html
+      - name: Create 404.html
         run: |
           if [ -f build/index.html ]; then cp build/index.html build/404.html; fi
 
