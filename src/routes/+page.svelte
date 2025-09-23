@@ -25,8 +25,7 @@
     <ul class="grid grid-cols-4 gap-3">
       {#each results as ucs}
         <li class="border rounded p-3 text-center hover:bg-zinc-50">
-          <a class="text-3xl" href={resolve(`/k/${ucs}`)}>⛩️</a>
-          <div class="text-xs text-zinc-500 mt-1">{ucs}</div>
+          <a class="text-3xl" href={resolve(`/k/${ucs}`)}>{@html `&#${ucs};`}</a>
         </li>
       {/each}
     </ul>
